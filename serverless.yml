@@ -12,7 +12,10 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: us-east-1
-
+  apiGateway:
+    # accepted binary type for file uploads
+    binaryMediaTypes:
+      - 'multipart/form-data'
   iam:
     role:
       statements:

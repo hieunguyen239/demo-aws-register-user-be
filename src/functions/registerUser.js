@@ -16,13 +16,16 @@ module.exports.handler = async (event) => {
       message: 'Picture, name, dob required',
     });
   }
+
   try {
     const s3 = new AWS.S3();
+
     await s3.putObject({
-      Bucket: 'local-bucket',
-      Key: 'test.txt',
-      Body: new Buffer("abcd")
-    }).promise;
+      Bucket: 'demo-register-user-bucket',
+      Key: files[0].filename,
+      Body:files[0].content,
+      // ACL:'public-read',
+    }).promise();
 
     return makeResponse({
       statusCode: 200,
@@ -35,10 +38,4 @@ module.exports.handler = async (event) => {
       message: error,
     });
   }
-
-  // console.log(2222222);
-
-  // return makeResponse({
-  //   statusCode: 200,
-  // });
 };
