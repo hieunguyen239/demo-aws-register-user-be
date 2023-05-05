@@ -77,8 +77,8 @@ resources:
             #   Resource:
             #     - arn:aws:s3:::${self:custom.S3_BUCKET_NAME}
             - Effect: Allow
-              # Principal:
-              #   AWS: arn:aws:iam::254541576558:role/Production-Transfer-ServiceRole
+              Principal:
+                AWS: arn:aws:iam::227325838516:user/hieunguyen
               Action:
                 - s3:GetObject
                 # - s3:GetObjectVersion
