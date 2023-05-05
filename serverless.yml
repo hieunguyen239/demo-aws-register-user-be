@@ -27,6 +27,10 @@ provider:
             - 's3:PutObject'
           Resource:
             - 'arn:aws:s3:::${self:custom.S3_BUCKET_NAME}/*'
+        - Effect: Allow
+          Action:
+            - 'cloudformation:DescribeStacks'
+          Resource: '*'
 
 
 resources:
