@@ -100,7 +100,7 @@ resources:
               - AttributeName: email
                 AttributeType: S
               - AttributeName: userRole
-                AttributeType: BOOL
+                AttributeType: N
               - AttributeName: userData
                 AttributeType: M
             KeySchema:
