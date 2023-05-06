@@ -93,30 +93,30 @@ resources:
                 - arn:aws:s3:::${self:custom.S3_BUCKET_NAME}/*
 
     usersTable:
-          Type: AWS::DynamoDB::Table
-          Properties:
-            TableName: usersTable
-            AttributeDefinitions:
-            - AttributeName: "email"
-              AttributeType: "S"
-            - AttributeName: "userRole"
-              AttributeType: "S"
-            - AttributeName: "userData"
-              AttributeType: "S"
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usersTable
+        AttributeDefinitions:
+        - AttributeName: "email"
+          AttributeType: "S"
+        - AttributeName: "userRole"
+          AttributeType: "S"
+        - AttributeName: "userData"
+          AttributeType: "S"
+        KeySchema:
+          - AttributeName: "email"
+            KeyType: "HASH"
+        BillingMode: PAY_PER_REQUEST
+        GlobalSecondaryIndexes:
+          - IndexName: "userRoleIndex"
             KeySchema:
-              - AttributeName: "email"
+              - AttributeName: "userRole"
                 KeyType: "HASH"
-            BillingMode: PAY_PER_REQUEST
-            GlobalSecondaryIndexes:
-              - IndexName: "userRoleIndex"
-                KeySchema:
-                  - AttributeName: "userRole"
-                    KeyType: "HASH"
-                Projection:
-                  ProjectionType: "ALL"
-                ProvisionedThroughput:
-                  ReadCapacityUnits: 1
-                  WriteCapacityUnits: 1
+            Projection:
+              ProjectionType: "ALL"
+            # ProvisionedThroughput:
+            #   ReadCapacityUnits: 1
+            #   WriteCapacityUnits: 1
 functions:
   registerUser:
     handler: src/functions/registerUser.handler
