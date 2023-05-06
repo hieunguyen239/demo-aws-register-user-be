@@ -92,7 +92,7 @@ resources:
               Resource:
                 - arn:aws:s3:::${self:custom.S3_BUCKET_NAME}/*
 
-    usersTable:
+    demoUsersTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: usersTable
