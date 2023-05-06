@@ -97,26 +97,26 @@ resources:
           Properties:
             TableName: usersTable
             AttributeDefinitions:
-              - AttributeName: email
-                AttributeType: S
-              - AttributeName: userRole
-                AttributeType: N
-              - AttributeName: userData
-                AttributeType: M
+            - AttributeName: "email"
+              AttributeType: "S"
+            - AttributeName: "userRole"
+              AttributeType: "S"
+            - AttributeName: "userData"
+              AttributeType: "S"
             KeySchema:
-              - AttributeName: email
-                KeyType: HASH
-            GlobalSecondaryIndexes:
-              - IndexName: by-userRole
-                KeySchema:
-                  - AttributeName: userRole
-                    KeyType: HASH
-                Projection:
-                  ProjectionType: ALL
+              - AttributeName: "email"
+                KeyType: "HASH"
             BillingMode: PAY_PER_REQUEST
-            # ProvisionedThroughput:
-            #   ReadCapacityUnits: 1
-            #   WriteCapacityUnits: 1
+            GlobalSecondaryIndexes:
+              - IndexName: "userRoleIndex"
+                KeySchema:
+                  - AttributeName: "userRole"
+                    KeyType: "HASH"
+                Projection:
+                  ProjectionType: "ALL"
+                ProvisionedThroughput:
+                  ReadCapacityUnits: 1
+                  WriteCapacityUnits: 1
 functions:
   registerUser:
     handler: src/functions/registerUser.handler
