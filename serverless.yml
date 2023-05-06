@@ -109,7 +109,7 @@ resources:
             GlobalSecondaryIndexes:
               - IndexName: by-userRole
                 KeySchema:
-                  - AttributeName: category
+                  - AttributeName: userRole
                     KeyType: HASH
                 Projection:
                   ProjectionType: ALL
