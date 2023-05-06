@@ -100,15 +100,15 @@ resources:
         AttributeDefinitions:
         - AttributeName: "email"
           AttributeType: "S"
-        - AttributeName: "userRole"
-          AttributeType: "S"
-        - AttributeName: "userData"
-          AttributeType: "S"
+        # - AttributeName: "userRole"
+        #   AttributeType: "S"
+        # - AttributeName: "userData"
+        #   AttributeType: "S"
         KeySchema:
           - AttributeName: "email"
             KeyType: "HASH"
-          - AttributeName: "userRole"
-            KeyType: "RANGE"
+          # - AttributeName: "userRole"
+          #   KeyType: "RANGE"
         # GlobalSecondaryIndexes:
         #   - IndexName: "userRoleIndex"
         #     KeySchema:
