@@ -91,6 +91,31 @@ resources:
                 # - s3:DeleteObjectVersion
               Resource:
                 - arn:aws:s3:::${self:custom.S3_BUCKET_NAME}/*
+
+    usersTable:
+          Type: AWS::DynamoDB::Table
+          Properties:
+            TableName: usersTable
+            AttributeDefinitions:
+              - AttributeName: email
+                AttributeType: S
+              - AttributeName: userRole
+                AttributeType: BOOL
+              - AttributeName: userData
+                AttributeType: M
+            KeySchema:
+              - AttributeName: email
+                KeyType: HASH
+            GlobalSecondaryIndexes:
+              - IndexName: by-userRole
+                KeySchema:
+                  - AttributeName: category
+                    KeyType: HASH
+                Projection:
+                  ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
 functions:
   registerUser:
     handler: src/functions/registerUser.handler
