@@ -109,13 +109,13 @@ resources:
             KeyType: "HASH"
           - AttributeName: "userRole"
             KeyType: "RANGE"
-        GlobalSecondaryIndexes:
-          - IndexName: "userRoleIndex"
-            KeySchema:
-              - AttributeName: "userRole"
-                KeyType: "HASH"
-            Projection:
-              ProjectionType: "ALL"
+        # GlobalSecondaryIndexes:
+        #   - IndexName: "userRoleIndex"
+        #     KeySchema:
+        #       - AttributeName: "userRole"
+        #         KeyType: "HASH"
+        #     Projection:
+        #       ProjectionType: "ALL"
             # ProvisionedThroughput:
             #   ReadCapacityUnits: 1
             #   WriteCapacityUnits: 1
