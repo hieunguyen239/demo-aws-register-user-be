@@ -96,6 +96,7 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: usersTable
+        BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
         - AttributeName: "email"
           AttributeType: "S"
@@ -106,7 +107,8 @@ resources:
         KeySchema:
           - AttributeName: "email"
             KeyType: "HASH"
-        BillingMode: PAY_PER_REQUEST
+          - AttributeName: "userRole"
+            KeyType: "RANGE"
         GlobalSecondaryIndexes:
           - IndexName: "userRoleIndex"
             KeySchema:
