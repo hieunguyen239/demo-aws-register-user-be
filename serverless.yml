@@ -1,4 +1,4 @@
-service: my-cv-be
+service: demo-register-user
 frameworkVersion: '3'
 # useDotenv: true
 
@@ -113,8 +113,6 @@ resources:
                 AttributeType: S
               - AttributeName: userRole
                 AttributeType: N
-              - AttributeName: userData
-                AttributeType: M
             KeySchema:
               - AttributeName: email
                 KeyType: HASH
