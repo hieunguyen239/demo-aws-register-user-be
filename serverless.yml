@@ -4,6 +4,7 @@ frameworkVersion: '3'
 
 custom:
   S3_BUCKET_NAME: demo-register-user-bucket
+  USER_TABLE_NAME: demoUsersTable
 
 plugins:
   - serverless-offline
@@ -30,6 +31,17 @@ provider:
             - 's3:PutObject'
           Resource:
             - 'arn:aws:s3:::${self:custom.S3_BUCKET_NAME}/*'
+        # Allow functions to read/write in Dynamodb
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+             - 'arn:aws:dynamodb:::${self:custom.USER_TABLE_NAME}/*'
         - Effect: Allow
           Action:
             - 'cloudformation:DescribeStacks'
@@ -92,28 +104,28 @@ resources:
               Resource:
                 - arn:aws:s3:::${self:custom.S3_BUCKET_NAME}/*
 
-    demoUsersTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: demoUsersTable
-        BillingMode: PAY_PER_REQUEST
-        AttributeDefinitions:
-        - AttributeName: "email"
-          AttributeType: "S"
-        - AttributeName: "userRole"
-          AttributeType: "S"
-        KeySchema:
-          - AttributeName: "email"
-            KeyType: "HASH"
-          - AttributeName: "userRole"
-            KeyType: "RANGE"
-        # GlobalSecondaryIndexes:
-        #   - IndexName: "userRoleIndex"
-        #     KeySchema:
-        #       - AttributeName: "userRole"
-        #         KeyType: "HASH"
-        #     Projection:
-        #       ProjectionType: "ALL"
+    usersTable:
+          Type: AWS::DynamoDB::Table
+          Properties:
+            TableName: ${self:custom.USER_TABLE_NAME}
+            AttributeDefinitions:
+              - AttributeName: email
+                AttributeType: S
+              - AttributeName: userRole
+                AttributeType: N
+              - AttributeName: userData
+                AttributeType: M
+            KeySchema:
+              - AttributeName: email
+                KeyType: HASH
+            GlobalSecondaryIndexes:
+              - IndexName: by-userRole
+                KeySchema:
+                  - AttributeName: userRole
+                    KeyType: HASH
+                Projection:
+                  ProjectionType: ALL
+            BillingMode: PAY_PER_REQUEST
             # ProvisionedThroughput:
             #   ReadCapacityUnits: 1
             #   WriteCapacityUnits: 1
