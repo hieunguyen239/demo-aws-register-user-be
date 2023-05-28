@@ -55,13 +55,6 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.S3_BUCKET_NAME}
-        # VersioningConfiguration:
-        #   Status: "Enabled"
-        # PublicAccessBlockConfiguration:
-        #   BlockPublicAcls: True
-        #   BlockPublicPolicy: True
-        #   IgnorePublicAcls: True
-        #   RestrictPublicBuckets: True
         # Set the CORS policy
         CorsConfiguration:
           CorsRules:
@@ -83,14 +76,6 @@ resources:
         PolicyDocument:
           Version: "2012-10-17"
           Statement:
-            # - Effect: Allow
-            #   Principal:
-            #     AWS: arn:aws:iam::254541576558:role/Production-Transfer-ServiceRole
-            #   Action:
-            #     - s3:ListBucket
-            #     - s3:GetBucketLocation
-            #   Resource:
-            #     - arn:aws:s3:::${self:custom.S3_BUCKET_NAME}
             - Effect: Allow
               Principal:
                 AWS: arn:aws:iam::227325838516:user/hieunguyen
