@@ -4,7 +4,7 @@ frameworkVersion: '3'
 
 custom:
   S3_BUCKET_NAME: demo-register-user-bucket
-  USER_TABLE_NAME: demoUsersTable
+  USER_TABLE_NAME: demoUsersTableNew
 
 plugins:
   - serverless-offline
