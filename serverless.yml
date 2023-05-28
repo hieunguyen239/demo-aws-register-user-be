@@ -41,7 +41,7 @@ provider:
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
           Resource:
-             - 'arn:aws:dynamodb:::${self:custom.USER_TABLE_NAME}/*'
+             - '*'
         - Effect: Allow
           Action:
             - 'cloudformation:DescribeStacks'
