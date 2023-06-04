@@ -6,6 +6,7 @@ const BUCKET_NAME = process.env.APP_S3BUCKET_NAME;
 const DYNAMODB_TABLE = process.env.APP_DYNAMODB_TABLE;
 
 module.exports.handler = async (event) => {
+  console.log('event', event);
   const formData = await formParser.parse(event);
   const {
     files,
