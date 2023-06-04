@@ -122,3 +122,9 @@ functions:
       - httpApi:
           path: /register-user
           method: post
+  getUsers:
+    handler: src/functions/getUsers.handler
+    events:
+      - httpApi:
+          path: /get-users
+          method: get
