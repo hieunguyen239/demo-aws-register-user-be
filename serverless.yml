@@ -17,6 +17,8 @@ provider:
     # accepted binary type for file uploads
     binaryMediaTypes:
       - 'multipart/form-data'
+  httpApi:
+    cors: true
   iam:
     role:
       statements:
@@ -120,4 +122,3 @@ functions:
       - httpApi:
           path: /register-user
           method: post
-          cors: true
