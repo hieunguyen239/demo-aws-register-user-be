@@ -120,3 +120,4 @@ functions:
       - httpApi:
           path: /register-user
           method: post
+          cors: true
