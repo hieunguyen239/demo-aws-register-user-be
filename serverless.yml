@@ -100,7 +100,7 @@ resources:
               - AttributeName: email
                 AttributeType: S
               - AttributeName: userRole
-                AttributeType: N
+                AttributeType: S
             KeySchema:
               - AttributeName: email
                 KeyType: HASH
