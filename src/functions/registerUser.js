@@ -33,7 +33,7 @@ module.exports.handler = async (event) => {
       Bucket: BUCKET_NAME,
       Key: files[0].filename,
       Body: files[0].content,
-      ACL:'public-read',
+      // ACL:'public-read', // if you want to public the file. Required S3 config ownership and permission
     }).promise();
 
     await dynamoDB.putItem({
